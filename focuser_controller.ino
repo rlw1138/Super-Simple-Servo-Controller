@@ -177,7 +177,7 @@ or 91, depending) degrees as the value for "myservo.write(STOP_DEGREES)"
 REGARDING SPEED VALUES
 
 Values are given in "degrees from Stopped Position" (which is 90-ish degrees).
-180 degrees is "fastest clockwise" and 0 degrees is "slowest counterclockwise" (although you may
+180 degrees is "fastest clockwise" and 0 degrees is "fastest counterclockwise" (although you may
 not see any difference between 0 and 40, or between 120 and 180).
 
 The farther the "command value" is from 'stopped position' the faster the servo will turn. 
