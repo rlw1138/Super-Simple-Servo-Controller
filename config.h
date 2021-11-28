@@ -4,6 +4,8 @@ Configuration of servo-controller SPEED SETTINGS
 
 The fact that I mostly use my servo-controllers for my telescopes is
 reflected in the various "//comments" below
+
+If six variations are too few, you can certainly add as many as needed.
 */
 
 #define CONTROLLER_FIRST 1
