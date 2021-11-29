@@ -37,7 +37,7 @@
 #define CONTROLLER Controller_03
 #include "config.h" // speed settings for the different controller units
 
-#define DeBuG
+//#define DeBuG
 #define CLK 7
 #define DATA 4
 #define CONTROLPIN 6

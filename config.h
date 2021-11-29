@@ -29,7 +29,7 @@ If six variations are too few, you can certainly add as many as needed.
 
 #if CONTROLLER == 1        // for 5" Maksutov
 // un-comment next line, if you need to reverse functionality
-//  #define DIRECTION_SWAP 
+//  #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100, 100, 100};
@@ -49,8 +49,8 @@ If six variations are too few, you can certainly add as many as needed.
 //  #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
-  const int8_t servo_speed_CW[] = {91, 92, 93, 94, 95, 96, 98, 100, 110, 120};
-  const int8_t servo_speed_CCW[] = {86, 85, 84, 83, 82, 76, 70, 60, 50, 40};
+  const int8_t servo_speed_CW[] =  {93, 94, 95, 96, 97, 98, 100, 104, 110, 120};
+  const int8_t servo_speed_CCW[] = {87, 86, 85, 84, 83, 76, 70, 60, 50, 40};
   #warning "INFO: Compiling for LUNT_50"
 
 // #elif CONTROLLER == 4     // for Astro-Tech 10" Dob
