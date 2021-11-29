@@ -32,8 +32,6 @@
 // Robust Rotary Encoder Reading [ read_rotary() function ]
 // Copyright John Main - best-microcontroller-projects.com
 //
-#include <Servo.h>
-Servo myservo;  // create servo object to control a servo
 
 // choose the specific controller (Controller_01 thru Controller_06;)
 #define CONTROLLER Controller_01
@@ -45,8 +43,18 @@ Servo myservo;  // create servo object to control a servo
 #define BUTTON 5
 #define BAUD 9600
 #define IDLE 0
-#define CW 1
-#define CCW -1
+#if defined( DIRECTION_SWAP )
+    // 'swapped' values
+    #define CW -1
+    #define CCW 1
+#else // 'normal' values
+    #define CW 1
+    #define CCW -1
+#endif
+
+#include <Servo.h>
+Servo myservo;  // create servo object to control a servo
+
 
 void setup() {
   myservo.attach(CONTROLPIN, 1000, 2000);  //servo control pin, range in mS
@@ -76,7 +84,7 @@ void loop() {
 
     if ( val=read_rotary() ) {
 
-        if ( val==1 ) {
+        if ( val==CW ) {
             currentDirection = CW;
         }
         else {

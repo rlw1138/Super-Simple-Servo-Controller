@@ -28,6 +28,8 @@ If six variations are too few, you can certainly add as many as needed.
 //
 
 #if CONTROLLER == 1        // for 5" Maksutov
+// un-comment next line, if you need to reverse functionality
+//  #define DIRECTION_SWAP 
   #define STOP_MS 1500
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100, 100, 100};
@@ -35,6 +37,8 @@ If six variations are too few, you can certainly add as many as needed.
   #warning "INFO: Compiling for MAK_5"
 
 #elif CONTROLLER == 2      // for Solar Newtonian
+// un-comment next line, if you need to reverse functionality
+//  #define DIRECTION_SWAP
   #define STOP_MS 1490
   #define STOP_DEGREES 89
   const int8_t servo_speed_CW[] = {91, 92, 93, 94, 95, 96, 98, 100, 110, 120};
@@ -42,6 +46,7 @@ If six variations are too few, you can certainly add as many as needed.
   #warning "INFO: Compiling for SOLAR_6"
 
 #elif CONTROLLER == 3      // for Lunt LS50tHa
+//  #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] = {91, 92, 93, 94, 95, 96, 98, 100, 110, 120};
@@ -51,6 +56,7 @@ If six variations are too few, you can certainly add as many as needed.
 // #elif CONTROLLER == 4     // for Astro-Tech 10" Dob
 // #elif CONTROLLER == 5     // for Orion short-tube 5"
  #elif CONTROLLER == 6     // for Bresser 80mm achro
+//  #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] = {91, 92, 93, 94, 95, 96, 98, 100, 110, 120};
