@@ -4,7 +4,7 @@ Speed and Direction control for a Servo-Motor with Arduino Nano and Rotary Encod
 //
 // Servo Motor Controller -- 2021-NOV-05 Russ Williams rlw1138#hotmail#com
 //
-/*  Speed and Direction control of a 'continuous' servo-motor, using an 
+/*  Speed and Direction control of a 'continuous' servo-motor, using an
     Incremental (quadrature-coded) Rotary Encoder and Arduino MCU
 
     Rotate the encoder one 'detent' to start the servo turning slowly.
@@ -18,20 +18,9 @@ Speed and Direction control for a Servo-Motor with Arduino Nano and Rotary Encod
 //
 //    Copyright (C) 2021  Russ Williams
 //
-//    This program is free software: you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation, either version 3 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License
-//    along with this program.  If not, see <http://www.gnu.org/licenses/>.
-//
-//
 // Robust Rotary Encoder Reading [ read_rotary() function ]
 // Copyright John Main - best-microcontroller-projects.com
 //
+
+Other details and discussion in my blog article:
+https://s4rc4sm.wordpress.com/2021/11/10/electric-servo-motor-controller/
