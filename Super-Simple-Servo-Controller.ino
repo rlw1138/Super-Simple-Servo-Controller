@@ -34,10 +34,10 @@
 //
 
 // choose the specific controller (Controller_01 thru Controller_06;)
-#define CONTROLLER Controller_03
+#define CONTROLLER Controller_02
 #include "config.h" // speed settings for the different controller units
 
-//#define DeBuG
+#define DeBuG
 #define CLK 7
 #define DATA 4
 #define CONTROLPIN 6
@@ -59,6 +59,9 @@ Servo myservo;  // create servo object to control a servo
 // number of defined speed settings
 int8_t speeds_CW  = ((sizeof servo_speed_CW)  / (sizeof servo_speed_CW[0])  );
 int8_t speeds_CCW = ((sizeof servo_speed_CCW) / (sizeof servo_speed_CCW[0]) );
+static int8_t servoCmd = 0; //value to send to servo
+static int8_t n = 0; //index to speed arrays
+static int8_t savedDirection = 0; //zero for Idle, 1 for CW, -1 for CCW
 
 
 void setup() {
@@ -89,14 +92,10 @@ void setup() {
 }
 
 
-int8_t val;
-int8_t savedDirection = 0; //zero for Idle, 1 for CW, -1 for CCW
-int8_t currentDirection = 0; // rotation direction, 0=idle 1=CW -1=CCW
-int8_t n = 0; //index to speed arrays
-int8_t servoCmd = 0; //value to send to servo
-
 void loop() {
+    int8_t val;
     int8_t limit;
+    int8_t currentDirection = 0; // rotation direction, 0=idle 1=CW -1=CCW
 
     if ( val = read_rotary() ) {
 
@@ -135,8 +134,6 @@ void loop() {
         else {
             // user reversed direction so STOP!
             full_stop();
-            n = 0;
-            savedDirection = 0;
             #ifdef DeBuG
               Serial.println("reverse STOP!");
             #endif
@@ -161,17 +158,20 @@ void full_stop() {
     myservo.writeMicroseconds(STOP_MS);
     delay(60);
     myservo.writeMicroseconds(STOP_MS);
+    servoCmd = 0; //value to send to servo
+    n = 0;
+    savedDirection = 0;
 }
 
 
 // BEWARE! This function uses tricksy mathemagical devilry!
 // Best not to meddle with the sorcery that follows.
 // A valid move CW returns 1, CCW returns -1, invalid returns 0.
-int8_t prevNextCode = 0;
-int16_t store = 0;
 
 int8_t read_rotary() {
   const int8_t rot_enc_table[] = {0,1,1,0,1,0,0,1,1,0,0,1,0,1,1,0};
+  static int8_t prevNextCode = 0;
+  static int16_t store = 0;
 
   prevNextCode <<= 2;
   if (digitalRead(DATA)) prevNextCode |= 0x02;
