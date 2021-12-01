@@ -45,6 +45,7 @@
 #define BAUD 9600
 #define IDLE 0
 #if defined( DIRECTION_SWAP )
+#ifdef DIRECTION_SWAP
     // 'swapped' values
     #define CW -1
     #define CCW 1
@@ -55,6 +56,10 @@
 
 #include <Servo.h>
 Servo myservo;  // create servo object to control a servo
+
+// number of defined speed settings
+int8_t speeds_CW  = ((sizeof servo_speed_CW)  / (sizeof servo_speed_CW[0])  );
+int8_t speeds_CCW = ((sizeof servo_speed_CCW) / (sizeof servo_speed_CCW[0]) );
 
 
 void setup() {
@@ -75,7 +80,15 @@ void setup() {
   #ifndef DeBuG
     Serial.end();
   #endif
+
+  #ifdef DeBuG
+  Serial.print(speeds_CW);
+  Serial.println(" speeds CW");
+  Serial.print(speeds_CCW);
+  Serial.println(" speeds CCW");
+  #endif
 }
+
 
 int8_t val;
 int8_t savedDirection = 0; //zero for Idle, 1 for CW, -1 for CCW
@@ -84,22 +97,27 @@ int8_t n = 0; //index to speed arrays
 int8_t servoCmd = 0; //value to send to servo
 
 void loop() {
+    int8_t limit;
 
     if ( val=read_rotary() ) {
+    if ( val = read_rotary() ) {
 
         if ( val==CW ) {
+        if ( val == CW ) {
             currentDirection = CW;
+            limit = speeds_CW -2;
         }
         else {
             //( val==-1 )
+            //( val == -1 )
             currentDirection = CCW;
+            limit = speeds_CCW -2;
         }
 
         // same direction, or first time thru the loop
         if ( currentDirection == savedDirection || savedDirection == 0 ) {
             if ( currentDirection == CW ) {
               servoCmd = servo_speed_CW[n];
-            }
             else {
               servoCmd = servo_speed_CCW[n];
             }
@@ -116,6 +134,7 @@ void loop() {
             #endif
             savedDirection =  currentDirection;
             if (n <= 8) n += 1; // there are ten speeds, 0 <-> 9
+            if ( n <= limit ) n += 1; // only allow the defined speeds
         }
         else {
             // user reversed direction so STOP!

@@ -25,6 +25,12 @@ If six variations are too few, you can certainly add as many as needed.
 
 //
 // TEN servo speed values (in Degrees) for each Direction, from Slow to Fast
+// servo speed values (in Degrees) for each Direction, from Slow to Fast
+//
+// you can define as many speeds (or as few) as you want, but usually it
+// doesn't make sense to do too many, since the motor speed won't actually
+// change. For example, "92, 93, 94" will cause perceptible changes but
+// "140, 141, 142" will not.
 //
 
 #if CONTROLLER == 1        // for 5" Maksutov
@@ -34,11 +40,14 @@ If six variations are too few, you can certainly add as many as needed.
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100, 100, 100};
   const int8_t servo_speed_CCW[] = {86, 85, 84, 83, 82, 81, 80, 79, 79, 79};
+  const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100};
+  const int8_t servo_speed_CCW[] = {86, 85, 84, 83, 82, 81, 80, 79};
   #warning "INFO: Compiling for MAK_5"
 
 #elif CONTROLLER == 2      // for Solar Newtonian
 // un-comment next line, if you need to reverse functionality
 //  #define DIRECTION_SWAP
+  #define DIRECTION_SWAP
   #define STOP_MS 1490
   #define STOP_DEGREES 89
   const int8_t servo_speed_CW[] = {91, 92, 93, 94, 95, 96, 98, 100, 110, 120};
@@ -47,6 +56,7 @@ If six variations are too few, you can certainly add as many as needed.
 
 #elif CONTROLLER == 3      // for Lunt LS50tHa
 //  #define DIRECTION_SWAP
+  // #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
   const int8_t servo_speed_CW[] =  {93, 94, 95, 96, 97, 98, 100, 104, 110, 120};
