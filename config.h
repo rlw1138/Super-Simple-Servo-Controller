@@ -24,7 +24,6 @@ If six variations are too few, you can certainly add as many as needed.
 #endif
 
 //
-// TEN servo speed values (in Degrees) for each Direction, from Slow to Fast
 // servo speed values (in Degrees) for each Direction, from Slow to Fast
 //
 // you can define as many speeds (or as few) as you want, but usually it
@@ -38,15 +37,12 @@ If six variations are too few, you can certainly add as many as needed.
 //  #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90
-  const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100, 100, 100};
-  const int8_t servo_speed_CCW[] = {86, 85, 84, 83, 82, 81, 80, 79, 79, 79};
   const int8_t servo_speed_CW[] = {92, 93, 94, 95, 96, 98, 99, 100};
   const int8_t servo_speed_CCW[] = {86, 85, 84, 83, 82, 81, 80, 79};
   #warning "INFO: Compiling for MAK_5"
 
 #elif CONTROLLER == 2      // for Solar Newtonian
 // un-comment next line, if you need to reverse functionality
-//  #define DIRECTION_SWAP
   #define DIRECTION_SWAP
   #define STOP_MS 1490
   #define STOP_DEGREES 89
@@ -55,7 +51,6 @@ If six variations are too few, you can certainly add as many as needed.
   #warning "INFO: Compiling for SOLAR_6"
 
 #elif CONTROLLER == 3      // for Lunt LS50tHa
-//  #define DIRECTION_SWAP
   // #define DIRECTION_SWAP
   #define STOP_MS 1500
   #define STOP_DEGREES 90

@@ -44,7 +44,6 @@
 #define BUTTON 5
 #define BAUD 9600
 #define IDLE 0
-#if defined( DIRECTION_SWAP )
 #ifdef DIRECTION_SWAP
     // 'swapped' values
     #define CW -1
@@ -99,16 +98,13 @@ int8_t servoCmd = 0; //value to send to servo
 void loop() {
     int8_t limit;
 
-    if ( val=read_rotary() ) {
     if ( val = read_rotary() ) {
 
-        if ( val==CW ) {
         if ( val == CW ) {
             currentDirection = CW;
             limit = speeds_CW -2;
         }
         else {
-            //( val==-1 )
             //( val == -1 )
             currentDirection = CCW;
             limit = speeds_CCW -2;
@@ -118,6 +114,7 @@ void loop() {
         if ( currentDirection == savedDirection || savedDirection == 0 ) {
             if ( currentDirection == CW ) {
               servoCmd = servo_speed_CW[n];
+          }
             else {
               servoCmd = servo_speed_CCW[n];
             }
@@ -133,7 +130,6 @@ void loop() {
               Serial.println(currentDirection);
             #endif
             savedDirection =  currentDirection;
-            if (n <= 8) n += 1; // there are ten speeds, 0 <-> 9
             if ( n <= limit ) n += 1; // only allow the defined speeds
         }
         else {
