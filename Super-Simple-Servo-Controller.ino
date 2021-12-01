@@ -101,21 +101,21 @@ void loop() {
 
         if ( val == CW ) {
             currentDirection = CW;
-            limit = speeds_CW -2;
         }
         else {
             //( val == -1 )
             currentDirection = CCW;
-            limit = speeds_CCW -2;
         }
 
         // same direction, or first time thru the loop
         if ( currentDirection == savedDirection || savedDirection == 0 ) {
             if ( currentDirection == CW ) {
               servoCmd = servo_speed_CW[n];
+              limit = speeds_CW -1;
           }
             else {
               servoCmd = servo_speed_CCW[n];
+              limit = speeds_CCW -1;
             }
 
             /* OPTIONAL -- your motor MAY need this to function correctly (un-comment if needed) */
@@ -129,7 +129,7 @@ void loop() {
               Serial.println(currentDirection);
             #endif
             savedDirection =  currentDirection;
-            if ( n <= limit ) n += 1; // only allow the defined speeds
+            if ( n < limit ) n += 1; // only allow the defined speeds
         }
         else {
             // user reversed direction so STOP!
